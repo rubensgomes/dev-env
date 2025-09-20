@@ -1,0 +1,11 @@
+git config credential.helper store
+
+git config --global core.editor "vim"
+git config --global user.name "Rubens Gomes"
+git config --global user.email rubens.s.gomes@gmail.com
+
+git config --local core.editor "vim"
+git config --local user.name "Rubens Gomes"
+git config --local user.email rubens.s.gomes@gmail.com
+
+

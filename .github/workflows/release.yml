@@ -1,0 +1,63 @@
+name: Create Release, Build and Push Docker Image
+
+# Trigger on tag push (Semantic Versioning)
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Add certs secret to be used from Dockerfile
+      - name: Write ZScaler cert
+        run: |
+          mkdir -p devcontainer/certs
+          echo "${{ secrets.ZSCALER_ROOT_CERT }}" > \
+            devcontainer/certs/zscaler-root.crt
+
+      # 2. Log in to Docker Hub
+      - name: Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+
+      # 3. Build the Docker image
+      - name: Build Docker image
+        run: |
+          TAG=${GITHUB_REF_NAME}   # Git tag (e.g., 0.0.1)
+          pushd devcontainer
+          docker build -f Dockerfile \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/devcontainer:$TAG .
+          popd
+
+      # 4. Push Docker image
+      - name: Push Docker image
+        run: |
+          TAG=${GITHUB_REF_NAME}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/devcontainer:$TAG
+
+      # 5.  Set up Git (optional if you need to commit or tag inside workflow)
+      - name: Set up Git
+        run: git config --global user.name "github-actions" \
+             && git config --global user.email "actions@github.com"
+
+      # 6. Create a GitHub release
+      - name: Create GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: "Automated release from GitHub Actions."
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
