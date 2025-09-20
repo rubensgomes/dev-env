@@ -29,6 +29,7 @@ Secret name                    Value
 - DOCKERHUB_USERNAME             Your Docker Hub username
 - DOCKERHUB_TOKEN                Docker Hub password or token
 - ZSCALER_ROOT_CERT              The ZScaler root certificate
+- PAT_TOKEN                      The user's PAT token w/repo+workflow
 
 ## Steps to set up a PAT (personal access token)
 
