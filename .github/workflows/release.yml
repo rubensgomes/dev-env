@@ -6,8 +6,7 @@ on:
     tags:
       - '*.*.*'
 
-# Without contents: write, creating a release fails with 403 
-# Resource not accessible.
+# Set permissions to avoid 403
 permissions:
   contents: write
 
@@ -20,19 +19,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Add certs secret to be used from Dockerfile
-      - name: Write ZScaler cert
-        run: |
-          mkdir -p devcontainer/certs
-          echo "${{ secrets.ZSCALER_ROOT_CERT }}" > \
-            devcontainer/certs/zscaler-root.crt
-
-      # 3. Log in to Docker Hub
+      # 2. Log in to Docker Hub
       - name: Log in to DockerHub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Add certs secret to be used from within Dockerfile
+      - name: Write ZScaler cert
+        run: |
+          mkdir -p devcontainer/certs
+          echo "${{ secrets.ZSCALER_ROOT_CERT }}" > \
+            devcontainer/certs/zscaler-root.crt
 
       # 4. Build the Docker image
       - name: Build Docker image
@@ -40,7 +39,8 @@ jobs:
           TAG=${GITHUB_REF_NAME}   # Git tag (e.g., 0.0.1)
           pushd devcontainer
           docker build -f Dockerfile \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/devcontainer:$TAG .
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/devcontainer:$TAG \
+             --build-arg CERT_PATH=certs/zscaler-root.crt .
           popd
 
       # 5. Push Docker image
@@ -63,5 +63,5 @@ jobs:
           body: "Automated release from GitHub Actions."
           draft: false
           prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
