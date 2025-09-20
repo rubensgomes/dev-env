@@ -6,6 +6,11 @@ on:
     tags:
       - '*.*.*'
 
+# Without contents: write, creating a release fails with 403 
+# Resource not accessible.
+permissions:
+  contents: write
+
 jobs:
   docker:
     runs-on: ubuntu-latest
