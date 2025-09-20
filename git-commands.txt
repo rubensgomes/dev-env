@@ -1,3 +1,5 @@
+List of useful git commands when setting up a new repo:
+
 git config credential.helper store
 
 git config --global core.editor "vim"
