@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y \
 # trust store certificates
 # -------------------------------
 # Copy ZScaler root certificate into container
+# the following certs/zscaler-root.crt is being copied from GitHub Actions
+# secret into that file from within the corresponding GitHub Actions workflow
 COPY certs/zscaler-root.crt /usr/local/share/ca-certificates/zscaler-root.crt
 
 # Update trust store
