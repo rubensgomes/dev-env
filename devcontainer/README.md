@@ -36,3 +36,8 @@ Secret name                    Value
 - Go to your repository → Settings → Actions → General → Workflow permissions
 - Make sure “Read and write permissions” is selected for the GITHUB_TOKEN
 - Optional: check “Allow GitHub Actions to create and approve pull requests” if needed.
+
+
+---
+Author:  [Rubens Gomes](https://rubensgomes.com/)
+

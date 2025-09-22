@@ -3,3 +3,6 @@
 This folder contains configuration files related to setting up Rubens' software
 development environment.
 
+---
+Author:  [Rubens Gomes](https://rubensgomes.com/)
+
