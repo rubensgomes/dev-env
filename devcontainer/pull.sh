@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # File: pull.sh
 #
 # Description: This shell script pull the devontainer image from my personal

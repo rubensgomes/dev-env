@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # File: setup.sh
 #
 # Description: This shell script sets up a git repo in GitHub. 

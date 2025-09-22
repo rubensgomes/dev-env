@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # File: push.sh
 #
 # Description: This shell script builds a docker image containing an Ubuntu
