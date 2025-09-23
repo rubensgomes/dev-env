@@ -22,12 +22,6 @@ PATH="${PATH}:/opt/gradle/bin"
 export PATH
 
 ###############################################################################
-# PROMPT PS1
-
-PROMPT="$ " && declare -x PROMPT
-PS1="$ " && declare -x PS1
-
-###############################################################################
 # HISTORY
 export HISTCONTROL=ignoreboth:erasedups
 export HISTFILE="${HOME}/.bash_history"
@@ -52,6 +46,14 @@ history -a
 # gradle
 GRADLE_USER_HOME="${HOME}/.gradle"
 export GRADLE_USER_HOME
+
+# PyCharm IDE exported from Windows 11
+# required by Claude Code /ide
+#export IDE_PATH="/mnt/c/dev/ide/pycharm/bin/pycharm64.exe"
+
+# IntelliJ IDE exported from Windows 11
+# required by Claude Code /ide
+#export IDE_PATH="/mnt/c/ide/intellij/bin/idea64.exe"
 
 # util-linux compilers paths
 # export LDFLAGS="-L/usr/local/opt/util-linux/lib"

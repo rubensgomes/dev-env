@@ -1,0 +1,29 @@
+1: Run claude installed in Windows 11 from PowerShell terminal
+2: Ensure claude plugin installed
+3: Tried the following Firewall setting
+
+# take note of the IP address
+wsl hostname -I
+
+# use the above /16 network address
+New-NetFirewallRule -DisplayName "Allow WSL2 Internal Traffic" -Direction Inbound -Protocol TCP -Action Allow -RemoteAddress 192.168.0.0/16 -LocalAddress 192.168.0.0/16
+
+4: Tried the following environment setting:
+
+set NODE_TLS_REJECT_UNAUTHORIZED=0
+
+5: Tried the following certificate setting:
+npm config set cafile "C:\dev\zscaler-root-ca.cer"
+
+6: Tried to following to execute npm from PowerShell:
+
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+7: Tried step 5 above.
+
+8: Changed terminal back in PyCharm to use "wsl"
+
+All good now!
+
+
+
