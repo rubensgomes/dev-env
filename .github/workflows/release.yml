@@ -66,5 +66,5 @@ jobs:
           generateReleaseNotes: true
           draft: false
           prerelease: false
-          token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.RUBENS_PAT_TOKEN }}
 
