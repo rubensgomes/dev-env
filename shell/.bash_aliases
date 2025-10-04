@@ -17,3 +17,5 @@ fi
 alias cp="cp -i"
 alias rm="rm -i"
 alias mv="mv -i"
+
+alias antlr4="java -jar /opt/antlr4/lib/antlr-4.13.2-complete.jar"

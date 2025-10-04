@@ -14,25 +14,13 @@ ${HOME}/.local/bin:\
 ${HOME}/bin:\
 ${HOME}/bin/tools:\
 /opt/gradle/bin:\
+/opt/maven/bin:\
 /usr/local/bin:\
 /bin:\
 /usr/bin:\
 /sbin:\
 /usr/sbin:\
 ${PATH}"
-
-######################################################################
-## HISTORY
-export HISTCONTROL=ignoreboth:erasedups
-export HISTFILE="${HOME}/.bash_history"
-export HISTSIZE=100000
-export HISTFILESIZE=${HISTSIZE}
-# Turn on parallel history Append (rather than overwrite) history.
-shopt -s histappend
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-history -a
 
 ######################################################################
 ## Constants

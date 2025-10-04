@@ -10,4 +10,5 @@ git config --local core.editor "vim"
 git config --local user.name "Rubens Gomes"
 git config --local user.email rubens.s.gomes@gmail.com
 
+git config --local user.email rubens.gomes@onbe.com
 
