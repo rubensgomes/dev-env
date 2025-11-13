@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Rubens personal shell environment profile
-#
 
 ######################################################################
 ## JAVA_HOME
